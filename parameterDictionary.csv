@@ -1,0 +1,26 @@
+none,none $n$, 
+test,Test $t$, 
+pH,pH, 
+T,Temperature,$^\circ$C
+Time,Start Time,min
+Sol,Solution Droplet, 
+Take,Take, 
+Cycle,Cycle, 
+Run,Run, 
+Channel,Channel, 
+VGS,Gate Voltage $V_\textrm{GS}$,V
+VDS,Drain Voltage $V_\textrm{DS}$,V
+Freq,Frequency $f$,Hz
+Tint,Internal temperature $T_\textrm{int}$,$^\circ$C
+Phase,Phase $\phi$,$^\circ$
+C,Concentration,mM
+Gate,Gate, 
+Chip,Chip, 
+Bottle,Bottle , 
+kappa,Conductivity $\kappa$,S/cm
+Type,Type, 
+t,t, 
+G,Gate, 
+k,Conductivity $\kappa$,S/cm
+c,Channel, 
+File,file, 
