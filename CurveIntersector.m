@@ -1,3 +1,11 @@
+% CurveIntersector
+% -------------------------------------------------------------------------
+% A class that will display an interface wherein the curves of a given figure
+% are intersected with a line and the resulting points are plotted in a window
+% below.
+%
+% Instantiate with: c = CurveIntersector()
+% 
 classdef CurveIntersector < Intersector
     properties
     end
