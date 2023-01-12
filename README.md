@@ -18,12 +18,12 @@ Note: Data files in subfolders are, in principle, also detected.
 Example of use of the keyword mechanism:
 - A given folder contains the following files obtained from measurements with the TTF Box: <br />
 Folder/ <br />
- &nbsp; | Analysis_Bottle1_pH6_Charac.dat <br />
- &nbsp; | Analysis_Bottle2_pH7_Charac.dat <br />
- &nbsp; | Analysis_Bottle3_pH8_Charac.dat <br />
- &nbsp; | Test/ <br />
- &nbsp; &nbsp;     || AnalysisTest1_Charac.dat <br />
- &nbsp; &nbsp;     || AnalysisTest2_Charac.dat <br />
+ &nbsp; &nbsp; > Analysis_Bottle1_pH6_Charac.dat <br />
+ &nbsp; &nbsp; > Analysis_Bottle2_pH7_Charac.dat <br />
+ &nbsp; &nbsp; > Analysis_Bottle3_pH8_Charac.dat <br />
+ &nbsp; &nbsp; > Test/ <br />
+ &nbsp; &nbsp; &nbsp; &nbsp;    > AnalysisTest1_Charac.dat <br />
+ &nbsp; &nbsp; &nbsp; &nbsp;    > AnalysisTest2_Charac.dat <br />
 - If the keyword is "Analysis", all the files would be selected.
 - If the keyword is "Analysis_" or "Analysis_Bottle", only the 3 first files would be selected.
 
