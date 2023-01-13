@@ -45,3 +45,16 @@ A data file needs to match the following structure: whatever1_whatever2_Paramete
 For instance: analysis_testA_pH6_BGV-1_T34.2_TransFunc_GM.dat or Joshua_Experiment_k310_Charac.dat<br />
 A sheet of an excel file just need to follow the structure: ParameterA ValueA_ParameterB ValueB_ ... _ ParameterX ValueX<br />
 Also the each of the said parameters needs to have an entry in the parameterDictionary.csv file (as discussed above).<br />
+
+-----------------------------
+4.
+
+-----------------------------
+5. How to save or load GUI settings ?
+[![NL How to select files](https://img.youtube.com/vi/YMMWcuXi_RQ/maxresdefault.jpg)](https://www.youtube.com/embed/YMMWcuXi_RQ) </br>
+There are 3 buttons:
+- Save: to save the GUI settings into a .mat file at a chosen location;
+- Save & Quit: same as above but also closes the window after the operation;
+- Load: retrieve settings from a .mat file and update the GUI.
+
+Note: The settings are also automatically saved at the software files location when the program is run successfully.
