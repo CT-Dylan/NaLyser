@@ -40,8 +40,8 @@ The elements to insert in the different cells are:
 
 On the one hand, there are "internal" parameters (VGS, VDS, Freq, Time,...) that are dependent on the type of files used. On the other hand, external parameters are inserted through the file/sheet names and the parameterDictionary.csv file. 
 
-To insert a parameter in a name, proper use of underscores needs to be followed.
-A data file needs to match the following structure: whatever1_whatever2_ParameterA ValueA_ParameterB ValueB_ ... .extension
-For instance: analysis_testA_pH6_BGV-1_T34.2_TransFunc_GM.dat or Joshua_Experiment_k310_Charac.dat
-A sheet of an excel file just need to follow the structure: ParameterA ValueA_ParameterB ValueB_ ... _ ParameterX ValueX
-Also the each of the said parameters needs to have an entry in the parameterDictionary.csv file (as discussed above).
+To insert a parameter in a name, proper use of underscores needs to be followed.<br />
+A data file needs to match the following structure: whatever1_whatever2_ParameterA ValueA_ParameterB ValueB_ ... .extension<br />
+For instance: analysis_testA_pH6_BGV-1_T34.2_TransFunc_GM.dat or Joshua_Experiment_k310_Charac.dat<br />
+A sheet of an excel file just need to follow the structure: ParameterA ValueA_ParameterB ValueB_ ... _ ParameterX ValueX<br />
+Also the each of the said parameters needs to have an entry in the parameterDictionary.csv file (as discussed above).<br />
