@@ -29,3 +29,19 @@ Folder/ <br />
 
 Note: 2 others conditions for that to work is that the "TTF Box" option in the Machine Dropdown should have been selected,
 and that the "Characteristics" checkbox should have been checked.
+
+-----------------------------
+3. How to select plotting parameters ?
+[![NL How to select files](https://img.youtube.com/vi/GIp33SmEZpQ/maxresdefault.jpg)](https://www.youtube.com/embed/GIp33SmEZpQ) </br>
+
+New parameters can be added to the list by adding a row in the excel file parameterDictionary.csv located in the software files.
+The elements to insert in the different cells are:
+> Keyword - Display name (with a second part that can be written in mathematical form with LaTeX syntax) - Unit (if blank, it is mandatory to leave at least a space in that cell) 
+
+On the one hand, there are "internal" parameters (VGS, VDS, Freq, Time,...) that are dependent on the type of files used. On the other hand, external parameters are inserted through the file/sheet names and the parameterDictionary.csv file. 
+
+To insert a parameter in a name, proper use of underscores needs to be followed.
+A data file needs to match the following structure: whatever1_whatever2_ParameterA ValueA_ParameterB ValueB_ ... .extension
+For instance: analysis_testA_pH6_BGV-1_T34.2_TransFunc_GM.dat or Joshua_Experiment_k310_Charac.dat
+A sheet of an excel file just need to follow the structure: ParameterA ValueA_ParameterB ValueB_ ... _ ParameterX ValueX
+Also the each of the said parameters needs to have an entry in the parameterDictionary.csv file (as discussed above).
