@@ -8,7 +8,7 @@
 % 
 classdef TangentIntersector < Intersector
     properties
-        reg
+        lineReg
     end
     methods
         % ----------------------------------------
@@ -45,13 +45,13 @@ classdef TangentIntersector < Intersector
             %evaluate
             warning ('off','all');
             for j = 1:size(self.x,1)
-                self.reg(j,:) = polyval(polyfit(self.x(j,:),self.y(j,:),1),self.x(j,:));
+                self.lineReg(j,:) = polyval(polyfit(self.x(j,:),self.y(j,:),1),self.x(j,:));
             end
             warning ('on','all');
             self.mx = self.boxmin(self.x);
-            self.my = self.boxmin(self.reg);
+            self.my = self.boxmin(self.lineReg);
             self.Mx = self.boxMax(self.x);
-            self.My = self.boxMax(self.reg);
+            self.My = self.boxMax(self.lineReg);
             self.index = 1;
 
             self.setCallbacks();
@@ -72,7 +72,7 @@ classdef TangentIntersector < Intersector
 
         %% Define the limits of the values of the interval spinner
         function regSpin(self, spinA, spinB)
-            if(spinA < spinB) %spinner1 call
+            if(spinA.Value < spinB.Value) %spinner1 call
                 mS = spinA.Value;
                 MS = spinB.Value;
                 spinA.Limits(2) = MS;
@@ -87,11 +87,11 @@ classdef TangentIntersector < Intersector
 
             for j = 1:size(self.x,1)
                 range = find(mS<=(self.x(j,:))&(self.x(j,:)<=MS));
-                self.reg(j,:) = polyval(polyfit(self.x(j,range),self.y(j,range),1),self.x(j,:));
+                self.lineReg(j,:) = polyval(polyfit(self.x(j,range),self.y(j,range),1),self.x(j,:));
             end
 
-            self.my = self.boxmin(self.reg);
-            self.My = self.boxMax(self.reg);
+            self.my = self.boxmin(self.lineReg);
+            self.My = self.boxMax(self.lineReg);
 
             self.spin(self.spinner{1});
             line(self.g.currentAxes, [mS mS],[min(min(self.y)) max(max(self.y))],'LineStyle',':', 'Color', 'k','LineWidth',0.5,'Tag','derived2');
@@ -111,13 +111,13 @@ classdef TangentIntersector < Intersector
 
             warning ('off','all');
             for j = 1:size(self.x,1)
-                self.reg(j,:) = polyval(polyfit(self.x(j,:),self.y(j,:),1),self.x(j,:));
+                self.lineReg(j,:) = polyval(polyfit(self.x(j,:),self.y(j,:),1),self.x(j,:));
             end
             warning ('on','all');
             self.mx = self.boxmin(self.x);
-            self.my = self.boxmin(self.reg);
+            self.my = self.boxmin(self.lineReg);
             self.Mx = self.boxMax(self.x);
-            self.My = self.boxMax(self.reg);
+            self.My = self.boxMax(self.lineReg);
             
             self.createFigure();
 
@@ -147,7 +147,7 @@ classdef TangentIntersector < Intersector
                 slopeSign = sign(y(idx)-y(sub2ind(size(my),row,col-1)));
             end
             % Compute y values of the intersections
-            Y = my(idx) + ((slopeSign<0) + slopeSign.' .* ((x0 - mx(idx))./(Mx(idx) - mx(idx)))) .* (My(idx) - my(idx));
+            Y = my(idx) + ((slopeSign<0) + slopeSign .* ((x0 - mx(idx))./(Mx(idx) - mx(idx))).').' .* (My(idx) - my(idx));
 
             % Delete previous lines and intersections
             for n = length(ax.Children):-1:1
@@ -158,7 +158,7 @@ classdef TangentIntersector < Intersector
 
             % Draw new lines and intersections
             for k = 1:size(x,1)
-                plot(ax,x(k,:),self.reg(k,:),'-','Color',self.color(k,:),'LineWidth',0.05,'Tag',['derived_Regression' num2str(k)]);
+                plot(ax,x(k,:),self.lineReg(k,:),'-','Color',self.color(k,:),'LineWidth',0.05,'Tag',['derived_Regression' num2str(k)]);
             end
             line(ax, [x0 x0],[min(min(y)) max(max(y))], 'Color', 'k','LineWidth',1.0,'Tag','derived2');
             for c = 1:size(my,1) % number of Children
@@ -194,7 +194,7 @@ classdef TangentIntersector < Intersector
                 slopeSign = sign(y(idx)-y(sub2ind(size(my),row,col-1)));
             end
             % Compute x values of the intersections
-            X = mx(idx) + ((slopeSign<0) + slopeSign.' .* ((y0 - my(idx))./(My(idx) - my(idx)))) .* (Mx(idx) - mx(idx));
+            X = mx(idx) + ((slopeSign<0) + slopeSign .* ((y0 - my(idx))./(My(idx) - my(idx))).').' .* (Mx(idx) - mx(idx));
 
             % Delete previous lines and intersections
             for n = length(ax.Children):-1:1
@@ -206,7 +206,7 @@ classdef TangentIntersector < Intersector
             % Draw new lines and intersections
 
             for k = 1:size(x,1)
-                plot(ax,x(k,:),self.reg(k,:),'-','Color',self.color(k,:),'LineWidth',0.05,'Tag',['derived_Regression' num2str(k)]);
+                plot(ax,x(k,:),self.lineReg(k,:),'-','Color',self.color(k,:),'LineWidth',0.05,'Tag',['derived_Regression' num2str(k)]);
             end
             line(ax,[x(1) x(end)], [y0 y0], 'Color', 'k','LineWidth',1.0,'Tag','derived2');
             for c = 1:size(my,1) % number of Children
@@ -226,13 +226,13 @@ classdef TangentIntersector < Intersector
             self.selectFigure@Intersector(i,j);
             warning ('off','all');
             for j = 1:size(self.x,1)
-                self.reg(j,:) = polyval(polyfit(self.x(j,:),self.y(j,:),1),self.x(j,:));
+                self.lineReg(j,:) = polyval(polyfit(self.x(j,:),self.y(j,:),1),self.x(j,:));
             end
             warning ('on','all');
             self.mx = self.boxmin(self.x);
-            self.my = self.boxmin(self.reg);
+            self.my = self.boxmin(self.lineReg);
             self.Mx = self.boxMax(self.x);
-            self.My = self.boxMax(self.reg);
+            self.My = self.boxMax(self.lineReg);
         end
 
     end

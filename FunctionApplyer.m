@@ -108,8 +108,9 @@ classdef FunctionApplyer < GraphAnalyser
             end
 
             if(length(self.dd{3}.Items) <= 1)
-                self.dd{6} = {'Merged'};
+                self.dd{6}.Value = {'Merged'};
             end
+            self.reg = [];
             self.reg.UIFigure = [];
 
             self.setCallbacks();
@@ -137,11 +138,12 @@ classdef FunctionApplyer < GraphAnalyser
                     if(matches(self.dd{3}.Items(i), self.dd{3}.Value))
                         pIdx = i;
                     else
+                        npIdx = i;
                         [pValues, uniqueIdx, repeatIdx] = unique(self.cData.param(:, 2+i));
                     end
                 end
-                self.reg.setPoints(self.cData.param(repeatIdx == 1,1), self.cData.param(repeatIdx == 1,2+pIdx), self.cData.paramName{1});
-                disp(join(["For ", self.reg.pName{pIdx}, " = ", num2str(pValues(1)),":"],""))
+                self.reg.setPoints(self.cData.param(repeatIdx == 1,1), self.cData.param(repeatIdx == 1,2+pIdx), self.cData.paramName{1}(pIdx));
+                disp(join(["For ", self.cData.paramName{1}(npIdx), " = ", num2str(pValues(1)),":"],""))
             end
             self.reg.setConfirmFct(self, @(x, varargin) x.plotRegression(self.reg));
             self.reg.setFunctions();
@@ -159,7 +161,12 @@ classdef FunctionApplyer < GraphAnalyser
             end
 
             if(matches(self.dd{6}.Value,"Merged"))
-                for i = 1:length(self.dd{3}.Items)
+                lI = length(self.dd{3}.Items);
+                if(lI <= 1)
+                    plot(self.ax{2},self.reg.pDisplay,self.reg.vDisplay, 'Color', 'k', 'LineStyle','-', 'Tag', 'regression');
+                        
+                else
+                for i = 1:lI
                     if(~matches(self.dd{3}.Items(i), self.dd{3}.Value))
                         [pValues, uniqueIdx] = unique(self.cData.param(:, 2+i));
                         for j = 1:length(pValues)
@@ -169,6 +176,7 @@ classdef FunctionApplyer < GraphAnalyser
                         end
 
                     end
+                end
                 end
             else
                 for i = 1:length(self.dd{3}.Items)
@@ -325,6 +333,10 @@ classdef FunctionApplyer < GraphAnalyser
                     mm = mm - 1;
                     MM = MM + 1;
                 end
+                % Check if value is infinite or does not exist.
+                if(sum(isinf(mm)+isnan(mm)) && sum(isinf(MM)+isnan(MM)))
+                    error("A result is infinite or not a number.");
+                end
                 XAxisBounds(1,:) = [mp-0.1*(Mp-mp) Mp+0.1*(Mp-mp)];
                 XAxisBounds(2,:) = self.ax{2}.YAxis.Limits;
                 XAxisBounds(3,:) = self.g.currentAxes.YAxis.Limits;
@@ -359,6 +371,10 @@ classdef FunctionApplyer < GraphAnalyser
                 if(abs(mm-MM) < 1e-16)
                     mm = mm - 1;
                     MM = MM + 1;
+                end
+                % Check if value is infinite or does not exist.
+                if(sum(isinf(mm)+isnan(mm)) && sum(isinf(MM)+isnan(MM)))
+                    error("A result is infinite or not a number.");
                 end
                 XAxisBounds(1,:) = [mp-0.1*(Mp-mp) Mp+0.1*(Mp-mp)];
                 XAxisBounds(2,:) = self.ax{2}.XAxis.Limits;

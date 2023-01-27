@@ -224,9 +224,9 @@ classdef Graphs < matlab.mixin.Copyable
                         % Add title to the subfigure
                         if(~strcmp(self.subFigParam.name, 'none'))
                             if(2019 <= [cellfun(@str2num,regexp(version('-release'),'\d+','match'))])
-                                title(append(self.subFigParam.name, ' ', num2str(self.subFigParam.values(sf)), self.subFigParam.unit),'fontsize',8,'fontname','times','interpreter','latex');
+                                title(append(self.subFigParam.name, ' ', num2str(self.subFigParam.values(sf)), self.subFigParam.unit),'fontsize',round(self.fontSize/power(sP1,1/4)*3/4),'fontname','times','interpreter','latex');
                             else
-                                title(join([self.subFigParam.name, ' ', num2str(self.subFigParam.values(sf)), self.subFigParam.unit]),'fontsize',8,'fontname','times','interpreter','latex');
+                                title(join([self.subFigParam.name, ' ', num2str(self.subFigParam.values(sf)), self.subFigParam.unit]),'fontsize',round(self.fontSize/power(sP1,1/4)*3/4),'fontname','times','interpreter','latex');
                             end
                         end
                         if(self.autoscaleOption)

@@ -75,7 +75,7 @@ classdef CurveIntersector < Intersector
             slopeSign(col==size(my,2)) = sign(y(idx(col==size(my,2))) - y(sub2ind(size(my), row(col==size(my,2)), col(col==size(my,2))-1)));
 
             % Compute y values of the intersections
-            Y = my(idx) + ((slopeSign<0) + slopeSign.' .* ((x0 - mx(idx))./(Mx(idx) - mx(idx)))) .* (My(idx) - my(idx));
+            Y = my(idx) + ((slopeSign<0) + slopeSign .* ((x0 - mx(idx))./(Mx(idx) - mx(idx))).').' .* (My(idx) - my(idx));
 
             % Delete previous lines and intersections
             for n = length(ax.Children):-1:1
@@ -120,7 +120,7 @@ classdef CurveIntersector < Intersector
             slopeSign(col==size(my,2)) = sign(y(idx(col==size(my,2)))-y(sub2ind(size(my),row(col==size(my,2)),col(col==size(my,2))-1)));
 
             % Compute x values of the intersections
-            X = mx(idx) + ((slopeSign<0) + slopeSign.' .* ((y0 - my(idx))./(My(idx) - my(idx)))) .* (Mx(idx) - mx(idx));
+            X = mx(idx) + ((slopeSign<0) + slopeSign .* ((y0 - my(idx))./(My(idx) - my(idx))).').' .* (Mx(idx) - mx(idx));
 
             % Delete previous lines and intersections
             for n = length(ax.Children):-1:1

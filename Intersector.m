@@ -111,8 +111,9 @@ classdef Intersector < GraphAnalyser
             end
 
             if(length(self.dd{3}.Items) <= 1)
-                self.dd{5} = {'Merged'};
+                self.dd{5}.Value = {'Merged'};
             end
+            self.reg = [];
             self.reg.UIFigure = [];
 
             self.createFigure();
@@ -144,11 +145,12 @@ classdef Intersector < GraphAnalyser
                     if(matches(self.dd{3}.Items(i), self.dd{3}.Value))
                         pIdx = i;
                     else
+                        npIdx = i;
                         [pValues, uniqueIdx, repeatIdx] = unique(self.cData.param(:, 3+i));
                     end
                 end
-                self.reg.setPoints(self.cData.param(repeatIdx == 1,valueIdx), self.cData.param(repeatIdx == 1,3+pIdx), self.cData.paramName{1});
-                disp(join(["For ", self.reg.pName{pIdx}, " = ", num2str(pValues(1)),":"],""))
+                self.reg.setPoints(self.cData.param(repeatIdx == 1,valueIdx), self.cData.param(repeatIdx == 1,3+pIdx), self.cData.paramName{1}(pIdx));
+                disp(join(["For ", self.cData.paramName{1}(npIdx), " = ", num2str(pValues(1)),":"],""))
             end
             self.reg.setConfirmFct(self, @(x, varargin) x.plotRegression(self.reg));
             self.reg.setFunctions();
@@ -166,7 +168,12 @@ classdef Intersector < GraphAnalyser
             end
 
             if(matches(self.dd{5}.Value,"Merged"))
-                for i = 1:length(self.dd{3}.Items)
+                lI = length(self.dd{3}.Items);
+                if(lI <= 1)
+                    plot(self.ax{2},self.reg.pDisplay,self.reg.vDisplay, 'Color', 'k', 'LineStyle','-', 'Tag', 'regression');
+                        
+                else
+                for i = 1:lI
                     if(~matches(self.dd{3}.Items(i), self.dd{3}.Value))
                         [pValues, uniqueIdx] = unique(self.cData.param(:, 3+i));
                         for j = 1:length(pValues)
@@ -176,6 +183,7 @@ classdef Intersector < GraphAnalyser
                         end
 
                     end
+                end
                 end
             else
                 if(strcmp(self.dd{2}.Value, 'Set Y'))
@@ -188,13 +196,14 @@ classdef Intersector < GraphAnalyser
                     if(matches(self.dd{3}.Items(i), self.dd{3}.Value))
                         pIdx = i;
                     else
+                        npIdx = i;
                         [pValues, uniqueIdx, repeatIdx] = unique(self.cData.param(:, 3+i));
                     end
                 end
                 plot(self.ax{2}, reg.pDisplay,reg.vDisplay, 'Color', self.cData.color(self.cData.param(uniqueIdx(1),3),:), 'LineStyle',self.cData.line{self.cData.param(uniqueIdx(1),3)}, 'Tag', 'regression');
                 for j = 2:length(pValues)
                     reg.setPoints(self.cData.param(repeatIdx == j,valueIdx), self.cData.param(repeatIdx == j,3+pIdx), self.cData.paramName{1});
-                    disp(join(["For ", reg.pName{pIdx}, " = ", num2str(pValues(j)),":"],""))
+                    disp(join(["For ", self.cData.paramName{1}(npIdx), " = ", num2str(pValues(j)),":"],""))
                     reg.regression();
                     reg.displayPlot();
                     plot(self.ax{2}, reg.pDisplay,reg.vDisplay, 'Color', self.cData.color(self.cData.param(uniqueIdx(j),3),:), 'LineStyle',self.cData.line{self.cData.param(uniqueIdx(j),3)}, 'Tag', 'regression');
