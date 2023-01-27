@@ -20,6 +20,10 @@ classdef Regressor < matlab.mixin.Copyable
         PreprocessingfunctionDropDown
         PostprocessingfunctionDropDown
         ConfirmButton
+        SignDropDown
+        SignDropDownLabel
+        SignTable
+        SignLabel
 
         express             % Expression of the result
         lefthandExpress     % Left-hand side expression of express
@@ -72,10 +76,16 @@ classdef Regressor < matlab.mixin.Copyable
                       'sinh(x)','cosh(x)','tanh(x)',...
                       'asinh(x)','acosh(x)','atanh(x)'});
             varTable = {};
+
+            catsign = categorical({'+'},{'+','-'});
+            signTable = {};
+
             for i = 1:self.dimension
                 varTable{i} = [catfun;catfun;catfun;catfun;catfun;catfun;catfun;catfun;catfun;catfun];
+                signTable{i} = [catsign];
             end
             t = table(varTable{:});
+            st = table(signTable{:});
             
 
             % Create UIFigure and hide until all components are created
@@ -83,11 +93,21 @@ classdef Regressor < matlab.mixin.Copyable
             self.UIFigure.Position = [100 100 640 480];
             self.UIFigure.Name = 'Regressor';
 
+            % Create SignDropDown
+            self.SignDropDown = uidropdown(self.UIFigure);
+            self.SignDropDown.Position = [297 432 40 22];
+            self.SignDropDown.Items = {'+','-'};
+            % Create SignDropDownLabel
+            self.SignDropDownLabel = uilabel(self.UIFigure);
+            self.SignDropDownLabel.HorizontalAlignment = 'center';
+            self.SignDropDownLabel.Position = [297 455 40 22];
+            self.SignDropDownLabel.Text = 'Sign y';
+
             % Create PreprocessingfunctionDropDownLabel
             self.PreprocessingfunctionDropDownLabel = uilabel(self.UIFigure);
             self.PreprocessingfunctionDropDownLabel.HorizontalAlignment = 'right';
             self.PreprocessingfunctionDropDownLabel.Position = [20 432 127 22];
-            self.PreprocessingfunctionDropDownLabel.Text = 'Preprocessing function';
+            self.PreprocessingfunctionDropDownLabel.Text = 'Preprocessing fct(y)';
 
             % Create PreprocessingfunctionDropDown
             self.PreprocessingfunctionDropDown = uidropdown(self.UIFigure);
@@ -104,7 +124,7 @@ classdef Regressor < matlab.mixin.Copyable
             self.PostprocessingfunctionDropDownLabel = uilabel(self.UIFigure);
             self.PostprocessingfunctionDropDownLabel.HorizontalAlignment = 'right';
             self.PostprocessingfunctionDropDownLabel.Position = [372 432 132 22];
-            self.PostprocessingfunctionDropDownLabel.Text = 'Postprocessing function';
+            self.PostprocessingfunctionDropDownLabel.Text = 'Postprocessing fct(y)';
 
             % Create PostprocessingfunctionDropDown
             self.PostprocessingfunctionDropDown = uidropdown(self.UIFigure);
@@ -121,7 +141,19 @@ classdef Regressor < matlab.mixin.Copyable
             self.UITable = uitable(self.UIFigure,'Data',t,'ColumnEditable',true);
             self.UITable.ColumnName = self.pName;
             self.UITable.RowName = {};
-            self.UITable.Position = [20 52 599 357];
+            self.UITable.Position = [20 137 599 262];
+
+            % Create SignLabel
+            self.SignLabel = uilabel(self.UIFigure);
+            self.SignLabel.HorizontalAlignment = 'left';
+            self.SignLabel.Position = [20 111 140 22];
+            self.SignLabel.Text = 'Signs of the parameters';
+
+            % Create SignTable
+            self.SignTable = uitable(self.UIFigure,'Data',st,'ColumnEditable',true);
+            self.SignTable.ColumnName = self.pName;
+            self.SignTable.RowName = {};
+            self.SignTable.Position = [20 56 599 52];
 
             % Create ConfirmButton
             self.ConfirmButton = uibutton(self.UIFigure, 'push');
@@ -133,6 +165,8 @@ classdef Regressor < matlab.mixin.Copyable
             % Show the figure after all components are created
             self.UIFigure.Visible = 'on';
 
+
+
             % Button pushed function: ConfirmButton
             function ConfirmButtonPushed(btn, ui)
                 % Table
@@ -141,14 +175,23 @@ classdef Regressor < matlab.mixin.Copyable
                 for i = 1:size(self.UITable.DisplayData,2)
                     funStringArray = setxor(string(self.UITable.Data{:,i}),'-','stable');
                     for j = 1:length(funStringArray)
-                        [self.fct{i+1}{j}, term] = getFunction(funStringArray(j), self.pName{i});
+                        if(strcmp(string(self.SignTable.Data{1,i}),"+"))
+                            [self.fct{i+1}{j}, term] = getFunction(funStringArray(j), self.pName{i});
+                        else
+                            [self.fct{i+1}{j}, term] = getFunction(funStringArray(j), join(["(-",self.pName{i},")"],""));
+                        end
                         self.express = [self.express; term];
                     end
                 end
                 
                 % Preprocessing dropdown
-                [self.preFct, term] = getFunction(self.PreprocessingfunctionDropDown.Value, 'y');
+                leftArgument = 'y';
+                if(strcmp(self.SignDropDown.Value,"-"))
+                    leftArgument = join(["-",leftArgument],"");
+                end
+                [self.preFct, term] = getFunction(self.PreprocessingfunctionDropDown.Value, leftArgument);
                 self.lefthandExpress = join([term," = "],"");
+                
 
                 % Postprocessing dropdown
                 [self.postFct, self.postCstExpress] = getFunction(self.PostprocessingfunctionDropDown.Value, "a0");
@@ -164,6 +207,8 @@ classdef Regressor < matlab.mixin.Copyable
                 self.confirmFct(self.confirmObj, self.confirmArg);
             end
 
+
+
             % Getting actual MATLAB function
             function [fct, term] = getFunction(fctString, pName)
                 switch fctString
@@ -175,16 +220,16 @@ classdef Regressor < matlab.mixin.Copyable
                         term = pName;
                     case 'x^2'
                         fct = @(x) x.^2;
-                        term = join([pName,"²"],"");
+                        term = join(["(",pName,")²"],"");
                     case 'x^3'
                         fct = @(x) x.^3;
-                        term = join([pName,"³"],"");
+                        term = join(["(",pName,")³"],"");
                     case 'x^4'
                         fct = @(x) x.^4;
-                        term = join([pName,"^4"],"");
+                        term = join(["(",pName,")^4"],"");
                     case 'x^5'
                         fct = @(x) x.^5;
-                        term = join([pName,"^5"],"");
+                        term = join("(",[pName,")^5"],"");
                     case 'sqrt(x)'
                         fct = @sqrt;
                         term = join(["√",pName],"");
@@ -297,14 +342,23 @@ classdef Regressor < matlab.mixin.Copyable
                         fctApplied(:, matrixSize) = arrayfun(self.fct{i}{j}, self.p(:, 1));
                         fctAppliedDisplay(:, matrixSize) = arrayfun(self.fct{i}{j}, pCoordinates(:, 1));
                     else
-                        fctApplied(:, matrixSize) = arrayfun(self.fct{i}{j}, self.p(:, i-1));
-                        fctAppliedDisplay(:, matrixSize) = arrayfun(self.fct{i}{j}, pCoordinates(:, i-1));
+                        if(strcmp(string(self.SignTable.Data{1,i-1}),"+"))
+                            fctApplied(:, matrixSize) = arrayfun(self.fct{i}{j}, self.p(:, i-1));
+                            fctAppliedDisplay(:, matrixSize) = arrayfun(self.fct{i}{j}, pCoordinates(:, i-1));
+                        else
+                            fctApplied(:, matrixSize) = arrayfun(self.fct{i}{j}, -self.p(:, i-1));
+                            fctAppliedDisplay(:, matrixSize) = arrayfun(self.fct{i}{j}, -pCoordinates(:, i-1));
+                        end
                     end
                 end
             end
 
             % Form the left-hand side matrix
-            values = self.preFct(self.v); 
+            if(strcmp(self.SignDropDown.Value,"+"))
+                values = self.preFct(self.v);
+            else
+                values = self.preFct(-self.v);
+            end
             filter = ~(isinf(values)|isnan(values));
             b = fctApplied(filter,:).' * values(filter);
             A = fctApplied(filter,:).' * fctApplied(filter,:);
@@ -323,9 +377,15 @@ classdef Regressor < matlab.mixin.Copyable
 
             a = self.a;
             self.vreg = self.postFct(self.vreg);
+            if(strcmp(self.SignDropDown.Value,"-"))
+                self.vreg = - self.vreg;
+            end
             vreg = self.vreg;
             
             self.vDisplay = self.postFct(self.vDisplay);
+            if(strcmp(self.SignDropDown.Value,"-"))
+                self.vDisplay = - self.vDisplay;
+            end
             for l = 1:size(pCoordinates, 2)
                 [tmp1,tmp2, idcs(:,l)] = unique(pCoordinates(:,l));
             end
@@ -422,7 +482,11 @@ classdef Regressor < matlab.mixin.Copyable
                 for j = 1:length(self.fct{i})
                     termIdx = termIdx + 1;
                     if(i == pIdx)
-                        cst = cst + self.a(termIdx) * self.fct{i}{j}(pValue);
+                        if(strcmp(string(self.SignTable.Data{1,i-1}),"+"))
+                            cst = cst + self.a(termIdx) * self.fct{i}{j}(pValue);
+                        else
+                            cst = cst + self.a(termIdx) * self.fct{i}{j}(-pValue);
+                        end
                     else
                         filter(termIdx) = 1;
                         express = join([express, join([num2str(self.a(termIdx)), self.express(termIdx)],"")]," + ");
