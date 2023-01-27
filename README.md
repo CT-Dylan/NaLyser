@@ -49,6 +49,21 @@ Also the each of the said parameters needs to have an entry in the parameterDict
 -----------------------------
 4. How to customize figure display settings?
 [![NL How to select files](https://img.youtube.com/vi/3QvG4RIGcxM/maxresdefault.jpg)](https://www.youtube.com/embed/3QvG4RIGcxM) </br>
+Since the content has been defined, it is high time to look into the form. One may be disatisfied by the default figure display settings. Hence, a possibility to change some of them was made available. Namely the font size, line width, family of line colours, grid display, autoscale, window size, subfigures disposition.
+In order to test the chosen settings, a preview button can display a sample figure. </br>
+
+In addition, one can also choose whether the figures should be shown and/or saved in .fig and .png format. </br>
+
+The two families of line colours are:
+- Distinct, where the line colours are made as distinguishable as possible. First, by using the 7 default colours of Matlab, and then 40 other colours defined by an algorithm.
+- Gradient, where the line colours go from blue (RGB: [69 202 255]) to red (RGB: [255 27 107]), and the number of subdivisions is defined by the number spinner (below the Distinct/Gradient dropdown). </br>
+
+No uniform autoscale means that each subfigure will be rescaled individually, based on its own minima and maxima. With the uniform autoscale, the rescaling will be the same for all subfigures, depending on the absolute maxima and minima of all the curves displayed. </br>
+
+Custom window size can be done by inserted exactly 2 (integer) numbers in the Window dropdown, namely the width and the height in pixel. </br>
+
+For the subfigures disposition, one must start by making a grid in the Geometry panel. Then, for each subfigure, one must enter once and only once a given value of "subfigure parameter". If no data has that value as "subfigure parameter", then the subfigure slot will remain blank.
+For example, if the "subfigure parameter" is "Channel", and only channels from 1 to 16 were recorded, then entering 0 or -1 in one of the cell will leave the subfigure slot at that position blank. Conversely, entering 4 will display at that position the curves for the Channel 4.
 
 -----------------------------
 5. How to save or load GUI settings?
