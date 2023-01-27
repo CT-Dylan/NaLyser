@@ -7,10 +7,10 @@ Overview of the files
 
 
 -----------------------------
-1. How to install the software ?
+1. How to install the software?
 
 -----------------------------
-2. How to select the data files located in a given folder ?
+2. How to select the data files located in a given folder?
 [![NL How to select files](https://img.youtube.com/vi/IkyiP1m_GEY/maxresdefault.jpg)](https://www.youtube.com/embed/IkyiP1m_GEY) </br>
 
 Note: Data files in subfolders are, in principle, also detected.
@@ -31,7 +31,7 @@ Note: 2 others conditions for that to work is that the "TTF Box" option in the M
 and that the "Characteristics" checkbox should have been checked.
 
 -----------------------------
-3. How to select plotting parameters ?
+3. How to select plotting parameters?
 [![NL How to select files](https://img.youtube.com/vi/GIp33SmEZpQ/maxresdefault.jpg)](https://www.youtube.com/embed/GIp33SmEZpQ) </br>
 
 New parameters can be added to the list by adding a row in the excel file parameterDictionary.csv located in the software files.
@@ -47,10 +47,11 @@ A sheet of an excel file just need to follow the structure: ParameterA ValueA_Pa
 Also the each of the said parameters needs to have an entry in the parameterDictionary.csv file (as discussed above).<br />
 
 -----------------------------
-4.
+4. How to customize figure display settings?
+[![NL How to select files](https://img.youtube.com/vi/3QvG4RIGcxM/maxresdefault.jpg)](https://www.youtube.com/embed/3QvG4RIGcxM) </br>
 
 -----------------------------
-5. How to save or load GUI settings ?
+5. How to save or load GUI settings?
 [![NL How to select files](https://img.youtube.com/vi/YMMWcuXi_RQ/maxresdefault.jpg)](https://www.youtube.com/embed/YMMWcuXi_RQ) </br>
 There are 3 buttons:
 - Save: to save the GUI settings into a .mat file at a chosen location;
@@ -58,3 +59,17 @@ There are 3 buttons:
 - Load: retrieve settings from a .mat file and update the GUI.
 
 Note: The settings are also automatically saved at the software files location when the program is run successfully.
+
+-----------------------------
+6. What happens when the program is run?
+[![NL How to select files](https://img.youtube.com/vi/aOkbowkxJzc/maxresdefault.jpg)](https://www.youtube.com/embed/aOkbowkxJzc) </br>
+
+-----------------------------
+7. How to analyse the data?
+[![NL How to select files](https://img.youtube.com/vi/bRsPTepg2Z8/maxresdefault.jpg)](https://www.youtube.com/embed/bRsPTepg2Z8) </br>
+[![NL How to select files](https://img.youtube.com/vi/FbOWJRGi-wQ/maxresdefault.jpg)](https://www.youtube.com/embed/FbOWJRGi-wQ) </br>
+[![NL How to select files](https://img.youtube.com/vi/zRJdQKHtsjw/maxresdefault.jpg)](https://www.youtube.com/embed/zRJdQKHtsjw) </br>
+[![NL How to select files](https://img.youtube.com/vi/OxYiRbWbzEc/maxresdefault.jpg)](https://www.youtube.com/embed/OxYiRbWbzEc) </br>
+
+
+
