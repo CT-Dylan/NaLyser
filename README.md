@@ -50,6 +50,8 @@ For instance: analysis_testA_pH6_BGV-1_T34.2_TransFunc_GM.dat or Joshua_Experime
 A sheet of an excel file just need to follow the structure: ParameterA ValueA_ParameterB ValueB_ ... _ ParameterX ValueX<br />
 Also the each of the said parameters needs to have an entry in the parameterDictionary.csv file (as discussed above).<br />
 
+Note: There is always an additional available parameter called "File" (and for Keithley files also "Sheet") in the order of the selected files (see point 2.). The values of that (those) parameters goes from 1 to the number of files (/sheets) selected.
+
 -----------------------------
 4. How to customize figure display settings?
 [![NL How to select files](https://img.youtube.com/vi/3QvG4RIGcxM/maxresdefault.jpg)](https://www.youtube.com/embed/3QvG4RIGcxM) </br>
