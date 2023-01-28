@@ -108,10 +108,10 @@ Once the user is satisfied, the pop-up window can be closed. Then, the program w
 [![NL How to select files](https://img.youtube.com/vi/zRJdQKHtsjw/maxresdefault.jpg)](https://www.youtube.com/embed/zRJdQKHtsjw) </br>
 [![NL How to select files](https://img.youtube.com/vi/OxYiRbWbzEc/maxresdefault.jpg)](https://www.youtube.com/embed/OxYiRbWbzEc) </br>
 
-The curves of each (sub)figures can be further analysed. For that reason some tool were designed for that purpose. 
-a. Curver Intersector: a tool that will compute the intersections of the curves with a straight line that is parallel to either axis. 
-b. "Tangent" Intersector: a similar tool but instead of the intersections with the curves, it is the intersections with lines resulting from the linearisation of a section of the curves.
-c. Fuction Applier: a tool that will apply a function or an operation to the data. Ex: mean, derivation, integration, maximum,...
+The curves of each (sub)figures can be further analysed. For that reason some tool were designed for that purpose. </br>
+a. Curver Intersector: a tool that will compute the intersections of the curves with a straight line that is parallel to either axis. </br>
+b. "Tangent" Intersector: a similar tool but instead of the intersections with the curves, it is the intersections with lines resulting from the linearisation of a section of the curves.</br>
+c. Fuction Applier: a tool that will apply a function or an operation to the data. Ex: mean, derivation, integration, maximum,...</br>
 
 In addition, a linear regression can be performed on the results to deduce some tendancies or some correlations.
 
