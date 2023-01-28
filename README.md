@@ -53,6 +53,7 @@ Also the each of the said parameters needs to have an entry in the parameterDict
 -----------------------------
 4. How to customize figure display settings?
 [![NL How to select files](https://img.youtube.com/vi/3QvG4RIGcxM/maxresdefault.jpg)](https://www.youtube.com/embed/3QvG4RIGcxM) </br>
+
 Since the content has been defined, it is high time to look into the form. One may be disatisfied by the default figure display settings. Hence, a possibility to change some of them was made available. Namely the font size, line width, family of line colours, grid display, autoscale, window size, subfigures disposition.
 In order to test the chosen settings, a preview button can display a sample figure. </br>
 
@@ -106,6 +107,7 @@ Once the user is satisfied, the pop-up window can be closed. Then, the program w
 [![NL How to select files](https://img.youtube.com/vi/FbOWJRGi-wQ/maxresdefault.jpg)](https://www.youtube.com/embed/FbOWJRGi-wQ) </br>
 [![NL How to select files](https://img.youtube.com/vi/zRJdQKHtsjw/maxresdefault.jpg)](https://www.youtube.com/embed/zRJdQKHtsjw) </br>
 [![NL How to select files](https://img.youtube.com/vi/OxYiRbWbzEc/maxresdefault.jpg)](https://www.youtube.com/embed/OxYiRbWbzEc) </br>
+
 The curves of each (sub)figures can be further analysed. For that reason some tool were designed for that purpose. 
 a. Curver Intersector: a tool that will compute the intersections of the curves with a straight line that is parallel to either axis. 
 b. "Tangent" Intersector: a similar tool but instead of the intersections with the curves, it is the intersections with lines resulting from the linearisation of a section of the curves.
