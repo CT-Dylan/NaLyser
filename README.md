@@ -106,6 +106,15 @@ Once the user is satisfied, the pop-up window can be closed. Then, the program w
 [![NL How to select files](https://img.youtube.com/vi/FbOWJRGi-wQ/maxresdefault.jpg)](https://www.youtube.com/embed/FbOWJRGi-wQ) </br>
 [![NL How to select files](https://img.youtube.com/vi/zRJdQKHtsjw/maxresdefault.jpg)](https://www.youtube.com/embed/zRJdQKHtsjw) </br>
 [![NL How to select files](https://img.youtube.com/vi/OxYiRbWbzEc/maxresdefault.jpg)](https://www.youtube.com/embed/OxYiRbWbzEc) </br>
+The curves of each (sub)figures can be further analysed. For that reason some tool were designed for that purpose. 
+a. Curver Intersector: a tool that will compute the intersections of the curves with a straight line that is parallel to either axis. 
+b. "Tangent" Intersector: a similar tool but instead of the intersections with the curves, it is the intersections with lines resulting from the linearisation of a section of the curves.
+c. Fuction Applier: a tool that will apply a function or an operation to the data. Ex: mean, derivation, integration, maximum,...
+
+In addition, a linear regression can be performed on the results to deduce some tendancies or some correlations.
+
+Note: If the figure has been saved in .fig format. It is possible to analyse it again with a tool accessible by clicking on the icon on the top left corner of the main application.
+
 
 
 
