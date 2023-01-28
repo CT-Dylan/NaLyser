@@ -38,6 +38,10 @@ New parameters can be added to the list by adding a row in the excel file parame
 The elements to insert in the different cells are:
 > Keyword - Display name (with a second part that can be written in mathematical form with LaTeX syntax) - Unit (if blank, it is mandatory to leave at least a space in that cell) 
 
+More information on LaTeX with MATLAB here:
+https://nl.mathworks.com/help/matlab/creating_plots/greek-letters-and-special-characters-in-graph-text.html </br>
+
+
 On the one hand, there are "internal" parameters (VGS, VDS, Freq, Time,...) that are dependent on the type of files used. On the other hand, external parameters are inserted through the file/sheet names and the parameterDictionary.csv file. 
 
 To insert a parameter in a name, proper use of underscores needs to be followed.<br />
@@ -60,7 +64,7 @@ The two families of line colours are:
 
 No uniform autoscale means that each subfigure will be rescaled individually, based on its own minima and maxima. With the uniform autoscale, the rescaling will be the same for all subfigures, depending on the absolute maxima and minima of all the curves displayed. </br>
 
-Custom window size can be done by inserted exactly 2 (integer) numbers in the Window dropdown, namely the width and the height in pixel. </br>
+Custom window size can be done by inserting exactly 2 (integer) numbers in the Window dropdown, namely the width and the height in pixel. </br>
 
 For the subfigures disposition, one must start by making a grid in the Geometry panel. Then, for each subfigure, one must enter once and only once a given value of "subfigure parameter". If no data has that value as "subfigure parameter", then the subfigure slot will remain blank.
 For example, if the "subfigure parameter" is "Channel", and only channels from 1 to 16 were recorded, then entering 0 or -1 in one of the cell will leave the subfigure slot at that position blank. Conversely, entering 4 will display at that position the curves for the Channel 4.
@@ -78,6 +82,23 @@ Note: The settings are also automatically saved at the software files location w
 -----------------------------
 6. What happens when the program is run?
 [![NL How to select files](https://img.youtube.com/vi/aOkbowkxJzc/maxresdefault.jpg)](https://www.youtube.com/embed/aOkbowkxJzc) </br>
+
+Once the program is run, the program will parse through the files and look for the different parameters available. From there, two possibie scenarios can be considered:
+- There is a mismatch (shown in red) between the parameters detected and the one the user wished to see displayed.
+- No issue is found. </br>
+
+In the last case, all the parameters will be displayed in a pop-up window alongside how they were classified, with what names they will be displayed, their units and how their values will be dealt with. </br>
+
+They are classified as plotting parameters (see point 3.) or as "working point". By default, the working points have no effect, i.e. the program will run while totally and utterly disregarding the values of the working points. To change that, one can enter a value instead of the default word "ignore". For instance, if VDS was a working point and the user wants to plot curves for all channels but only for VDS = -3V, then the number -3 should be entered in the Operation column instead of the word "ignore".</br>
+
+By default, the name interpreter is LaTex, so that mathematical symbols and greek letters could be used. Therefore, the name can be made up of a normal text part, followed by a math part in-between dollar signs (and in that order). </br>
+More info on LaTeX with MATLAB here: https://nl.mathworks.com/help/matlab/creating_plots/greek-letters-and-special-characters-in-graph-text.html </br>
+
+The units were subdivided in two parts a prefix (milli, centi, deca, mega,...) and the unit itself. It allows the user to use files where internal parameters have different orders of magnitude. For example, if one file uses mA and V, whereas the other uses µA and mV, they can still be analysed and put together on the same graph. </br> 
+
+So far, for plotting parameters, only the "All" operation is available. Changing it will cause issues. </br>
+
+Once the user is satisfied, the pop-up window can be closed. Then, the program will read the files for the data and plot the curves.
 
 -----------------------------
 7. How to analyse the data?
