@@ -9,9 +9,10 @@ Overview of the files
 -----------------------------
 1. How to install the software?
 [![NL How to install the software](https://img.youtube.com/vi/O62l8tPCZ8I/maxresdefault.jpg)](https://www.youtube.com/embed/O62l8tPCZ8I) </br>
-There are 2 ways to get access to the software.
--Number 1: Get a MATLAB license (2022b or later) and download the Release "NaLyser-Original Files v1.10.1" on the right side of the Github page. You need to unzip it to get access to the files. Afterwards, move the path to the location of the folder and in the command window, enter "RunMain" to launch the program.
--Number 2: Make sure your OS is running on Windows. Install the software as a standalone application by getting the installer. You can find it in a Google Drive directory, which link may be found in the file Standalone_App/readme.txt . The installer is called "MyAppInstaller_mcr.exe". It will install the Matlab 2022b license-free compiler and the software (warning: 850 MB is required). If you already have the compiler installed, you may also just download the software Standalone_App/NaLyser.exe . Launching tge program is done by double-clicking on NaLyser.exe . 
+
+There are 2 ways to get access to the software.  <\br>
+- 1: Get a MATLAB license (2022b or later) and download the Release "NaLyser-Original Files v1.10.1" on the right side of the Github page. You need to unzip it to get access to the files. Afterwards, move the path to the location of the folder and in the command window, enter "RunMain" to launch the program. <\br>
+- 2: Make sure your OS is running on Windows. Install the software as a standalone application by getting the installer. You can find it in a Google Drive directory, which link may be found in the file Standalone_App/readme.txt . The installer is called "MyAppInstaller_mcr.exe". It will install the Matlab 2022b license-free compiler and the software (warning: 850 MB is required). If you already have the compiler installed, you may also just download the software Standalone_App/NaLyser.exe . Launching tge program is done by double-clicking on NaLyser.exe . 
 
 -----------------------------
 2. How to select the data files located in a given folder?
