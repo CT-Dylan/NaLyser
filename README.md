@@ -8,7 +8,7 @@ Overview of the files
 
 -----------------------------
 1. How to install the software?
-[![NL How to install the software](https://img.youtube.com/vi/O62l8tPCZ8I/maxresdefault.jpg)](https://www.youtube.com/embed/O62l8tPCZ8I) </br>
+[![NL How to install the software](https://img.youtube.com/vi/kRKg1pp_8aA/maxresdefault.jpg)](https://www.youtube.com/embed/kRKg1pp_8aA) </br>
 
 There are 2 ways to get access to the software.  <\br>
 - 1: Get a MATLAB license (2022b or later) and download the Release "NaLyser-Original Files v1.10.1" on the right side of the Github page. You need to unzip it to get access to the files. Afterwards, move the path to the location of the folder and in the command window, enter "RunMain" to launch the program. </br>
