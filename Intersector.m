@@ -234,7 +234,7 @@ classdef Intersector < GraphAnalyser
 
 
             % Adjust zoom
-            p = cell2mat(cellfun(@str2num,cellfun(@(x) char(regexp(x,'([+-])?\d+(.\d+)?','match')),self.displayName,'UniformOutput',false),'UniformOutput',false));
+            p = cell2mat(cellfun(@str2num,cellfun(@(x) char(regexp(x,'(([+-])?\d+(.\d+)?[e]([+-])?\d+)|(([+-])?\d+(.\d+)?)','match')),self.displayName,'UniformOutput',false),'UniformOutput',false));
             mp = min(p(1,:));
             Mp = max(p(1,:));
             if(strcmp(self.dd{2}.Value, 'Set Y'))
@@ -472,7 +472,7 @@ classdef Intersector < GraphAnalyser
                     X = ax.Children(n).XData;
                     Y = ax.Children(n).YData;
                     cIdx = regexp(ax.Children(n).Tag, '\d+','match'); % Child index
-                    paramVal = regexp(self.displayName{str2num(cIdx{1})}, '([+-])?\d+(.\d+)?','match'); % Parameter Value
+                    paramVal = regexp(self.displayName{str2num(cIdx{1})}, '(([+-])?\d+(.\d+)?[e]([+-])?\d+)|(([+-])?\d+(.\d+)?)','match'); % Parameter Value
                     self.cData.param(end+1,:) = [X Y str2num(cIdx{1}) cellfun(@str2num,paramVal) ];
                     self.cData.paramName{end+1} = extractBetween(self.displayName{str2num(cIdx{1})}, whitespacePattern ,whitespacePattern+(digitsPattern | characterListPattern("+-")+digitsPattern));
                     if(cmpLabel)
@@ -546,7 +546,7 @@ classdef Intersector < GraphAnalyser
             xy0 = s.Value;
 
             % Get the parameter values of the points
-            p = cell2mat(cellfun(@str2num,cellfun(@(x) char(regexp(x,'([+-])?\d+(.\d+)?','match')),self.displayName,'UniformOutput',false),'UniformOutput',false));
+            p = cell2mat(cellfun(@str2num,cellfun(@(x) char(regexp(x,'(([+-])?\d+(.\d+)?[e]([+-])?\d+)|(([+-])?\d+(.\d+)?)','match')),self.displayName,'UniformOutput',false),'UniformOutput',false));
 
             %p = cellfun(@str2num,cellfun(@(x) regexp(x,'\d+','match'),DisplayName));
             mp = min(p(pIdx,:));

@@ -200,7 +200,7 @@ if(strcmp(Machine, 'TTF Box'))
 
 elseif(strcmp(Machine, 'Keithley'))
 
-    disp('Work in progress...')
+    
     %% Characteristics
     if(~isempty(ch_fetchedP) && Section_Charac)
         disp('Characteristics data found.')
@@ -208,6 +208,7 @@ elseif(strcmp(Machine, 'Keithley'))
 
         disp('Reading Keithley files.')
         run = {};
+        sheetRunIdx = [];
         runV = {};
         runI = {};
         while(contains(ED.sheetnames(ED.readIdx),"Settings"))
@@ -216,6 +217,7 @@ elseif(strcmp(Machine, 'Keithley'))
             %Run number
             runPos = find(contains(table2array(sheetData(:,1)),'Run'));
             run = [run; regexp(sheetData{runPos,1}, '\d+','match','forceCellOutput','once')]; % Find Run numbers in the Setting sheet
+            sheetRunIdx = [sheetRunIdx; (1:length(runPos)).'];
 
             % Column names of the data sheets
             namePos = find(matches(table2array(sheetData(:,1)),'Name'));
@@ -251,7 +253,7 @@ elseif(strcmp(Machine, 'Keithley'))
             gatePos = contains(runV(runSettingIdx,:), "Gate");
             if(sum(gatePos))
                 VGS = sheetData{:, contains(sheetData.Properties.VariableNames, runV{runSettingIdx, gatePos})};
-                VGSVector = str2num([starts{runSettingIdx, gatePos} ':' steps{runSettingIdx, gatePos} ':' stops{runSettingIdx, gatePos}]);
+                VGSVector = str2num([starts{sheetRunIdx(runSettingIdx), gatePos} ':' steps{sheetRunIdx(runSettingIdx), gatePos} ':' stops{sheetRunIdx(runSettingIdx), gatePos}]);
                 VGS = correctVoltage(VGS, VGSVector.');
                 parameterIdx = find(strcmp(SavedTableData.Name(1:end,1), "VGS"));
                 dataTableRows = repmat(dataTableRow, numel(VGS), 1);
@@ -275,7 +277,7 @@ elseif(strcmp(Machine, 'Keithley'))
                         end
                     end
                     VDS = sheetData{:, contains(sheetData.Properties.VariableNames, runV{runSettingIdx, pos})};
-                    VDSVector = str2num([starts{runSettingIdx, pos} ':' steps{runSettingIdx, pos} ':' stops{runSettingIdx, pos}]);
+                    VDSVector = str2num([starts{sheetRunIdx(runSettingIdx), pos} ':' steps{sheetRunIdx(runSettingIdx), pos} ':' stops{sheetRunIdx(runSettingIdx), pos}]);
                     VDS = correctVoltage(VDS, VDSVector.');
                     parameterIdx = find(strcmp(SavedTableData.Name(1:end,1), "VDS"));
                     if(size(dataTableRows,1) ~= numel(VDS))
