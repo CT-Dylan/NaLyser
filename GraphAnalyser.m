@@ -126,11 +126,11 @@ classdef GraphAnalyser < matlab.mixin.Copyable
             self.outputFigure.Children(subfigureNb).Tag = 'Obsolete';
 
             self.outputAxesList{subfigureNb} = copyobj(self.uiPan{2}.Children, self.outputFigure);
-            self.outputAxesList{subfigureNb}.Title.String = titleSF.String;
-            self.outputAxesList{subfigureNb}.Title.FontSize = titleSF.FontSize;
-            self.outputAxesList{subfigureNb}.Title.FontWeight = titleSF.FontWeight;
-            self.outputAxesList{subfigureNb}.Title.FontName = titleSF.FontName;
-            self.outputAxesList{subfigureNb}.Title.Interpreter = titleSF.Interpreter;
+            self.outputAxesList{subfigureNb}(end).Title.String = titleSF.String;
+            self.outputAxesList{subfigureNb}(end).Title.FontSize = titleSF.FontSize;
+            self.outputAxesList{subfigureNb}(end).Title.FontWeight = titleSF.FontWeight;
+            self.outputAxesList{subfigureNb}(end).Title.FontName = titleSF.FontName;
+            self.outputAxesList{subfigureNb}(end).Title.Interpreter = titleSF.Interpreter;
 
             for i = 1:length(self.outputFigure.Children)
                 if(matches(self.outputFigure.Children(i).Tag, 'Obsolete'))
@@ -138,7 +138,7 @@ classdef GraphAnalyser < matlab.mixin.Copyable
                     break;
                 end
             end
-            set(self.outputAxesList{subfigureNb}, 'Position', positionSF);
+            set(self.outputAxesList{subfigureNb}(end), 'Position', positionSF);
         end
 
 
