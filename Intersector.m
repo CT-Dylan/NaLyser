@@ -476,10 +476,10 @@ classdef Intersector < GraphAnalyser
                     self.cData.param(end+1,:) = [X Y str2num(cIdx{1}) cellfun(@str2num,paramVal) ];
                     self.cData.paramName{end+1} = extractBetween(self.displayName{str2num(cIdx{1})}, whitespacePattern ,whitespacePattern+(digitsPattern | characterListPattern("+-")+digitsPattern));
                     if(cmpLabel)
-                        plot(self.ax{2},str2num(paramVal{pIdx}),X, 'd', 'Color', ax.Children(n).Color, 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).MarkerFaceColor,'LineWidth',1.0,'Tag','derived3');
+                        plot(self.ax{2},str2num(paramVal{pIdx}),X, 'd', 'Color', ax.Children(n).Color, 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).MarkerFaceColor,'LineWidth',1.0,'Tag','derived3','DisplayName',  ax.Children(n).DisplayName);
                         hold(self.ax{2},'on');
                     else
-                        plot(self.ax{2},str2num(paramVal{pIdx}),Y, 'd', 'Color', ax.Children(n).Color, 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).MarkerFaceColor,'LineWidth',1.0,'Tag','derived3');
+                        plot(self.ax{2},str2num(paramVal{pIdx}),Y, 'd', 'Color', ax.Children(n).Color, 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).MarkerFaceColor,'LineWidth',1.0,'Tag','derived3','DisplayName',  ax.Children(n).DisplayName);
                         hold(self.ax{2},'on');
                     end
                 end
