@@ -116,29 +116,31 @@ classdef GraphAnalyser < matlab.mixin.Copyable
         %% Collect the data results and place it in the output figure
         function collect(self, btn)
             set(self.outputFigure, 'Visible', 'on')
-            subfigureNb = contains(cellfun(@(x) x.String, {self.outputFigure.Children.Title}, 'UniformOutput', false), extractAfter(self.dd{4}.Value, '> '));
-            positionSF = get(self.outputFigure.Children(subfigureNb), 'position');
-            titleSF.String = self.outputFigure.Children(subfigureNb).Title.String;
-            titleSF.FontSize = self.outputFigure.Children(subfigureNb).Title.FontSize;
-            titleSF.FontWeight = self.outputFigure.Children(subfigureNb).Title.FontWeight;
-            titleSF.FontName = self.outputFigure.Children(subfigureNb).Title.FontName;
-            titleSF.Interpreter = self.outputFigure.Children(subfigureNb).Title.Interpreter;
-            self.outputFigure.Children(subfigureNb).Tag = 'Obsolete';
+            outFigureAxes = findobj(self.outputFigure.Children,'Type','Axes');
+            subfigureNb = contains(cellfun(@(x) x.String, {outFigureAxes.Title}, 'UniformOutput', false), extractAfter(self.dd{4}.Value, '> '));
+            positionSF = get(outFigureAxes(subfigureNb), 'position');
+            titleSF.String = outFigureAxes(subfigureNb).Title.String;
+            titleSF.FontSize = outFigureAxes(subfigureNb).Title.FontSize;
+            titleSF.FontWeight = outFigureAxes(subfigureNb).Title.FontWeight;
+            titleSF.FontName = outFigureAxes(subfigureNb).Title.FontName;
+            titleSF.Interpreter = outFigureAxes(subfigureNb).Title.Interpreter;
+            outFigureAxes(subfigureNb).Tag = 'Obsolete';
 
             self.outputAxesList{subfigureNb} = copyobj(self.uiPan{2}.Children, self.outputFigure);
-            self.outputAxesList{subfigureNb}(end).Title.String = titleSF.String;
-            self.outputAxesList{subfigureNb}(end).Title.FontSize = titleSF.FontSize;
-            self.outputAxesList{subfigureNb}(end).Title.FontWeight = titleSF.FontWeight;
-            self.outputAxesList{subfigureNb}(end).Title.FontName = titleSF.FontName;
-            self.outputAxesList{subfigureNb}(end).Title.Interpreter = titleSF.Interpreter;
+            outAxes = findobj(self.outputAxesList{subfigureNb},'Type','Axes'); 
+            outAxes.Title.String = titleSF.String;
+            outAxes.Title.FontSize = titleSF.FontSize;
+            outAxes.Title.FontWeight = titleSF.FontWeight;
+            outAxes.Title.FontName = titleSF.FontName;
+            outAxes.Title.Interpreter = titleSF.Interpreter;
 
-            for i = 1:length(self.outputFigure.Children)
-                if(matches(self.outputFigure.Children(i).Tag, 'Obsolete'))
-                    delete(self.outputFigure.Children(i));
+            for i = 1:length(outFigureAxes)
+                if(matches(outFigureAxes(i).Tag, 'Obsolete'))
+                    delete(outFigureAxes(i));
                     break;
                 end
             end
-            set(self.outputAxesList{subfigureNb}(end), 'Position', positionSF);
+            set(outAxes, 'Position', positionSF);
         end
 
 

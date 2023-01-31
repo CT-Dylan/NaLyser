@@ -281,7 +281,7 @@ classdef FunctionApplyer < GraphAnalyser
                         hold(self.ax{2},'on');
 
 
-                        paramVal = regexp(self.displayName{n}, '([+-])?\d+(.\d+)?','match'); % Parameter Value
+                        paramVal = regexp(self.displayName{n}, '(([+-])?\d+(.\d+)?[e]([+-])?\d+)|(([+-])?\d+(.\d+)?)','match'); % Parameter Value
                         self.cData.param(end+1,:) = [funResult(n) n cellfun(@str2num,paramVal) ];
                         self.cData.paramName{end+1} = extractBetween(self.displayName{n}, whitespacePattern ,whitespacePattern+(digitsPattern | characterListPattern("+-")+digitsPattern));
 
@@ -318,7 +318,7 @@ classdef FunctionApplyer < GraphAnalyser
 
 
             % Adjust zoom
-            p = cell2mat(cellfun(@str2num,cellfun(@(x) char(regexp(x,'([+-])?\d+(.\d+)?','match')),self.displayName,'UniformOutput',false),'UniformOutput',false));
+            p = cell2mat(cellfun(@str2num,cellfun(@(x) char(regexp(x,'(([+-])?\d+(.\d+)?[e]([+-])?\d+)|(([+-])?\d+(.\d+)?)','match')),self.displayName,'UniformOutput',false),'UniformOutput',false));
 
             if(isempty(p))
                 p = 0;
