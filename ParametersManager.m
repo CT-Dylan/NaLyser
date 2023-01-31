@@ -90,6 +90,8 @@ classdef ParametersManager < matlab.mixin.Copyable
                 self.paramDictionary.addKey('Freq','Frequency $f$','Hz');
                 self.paramDictionary.addKey('Tint','Internal temperature $T_\textrm{int}$','$^\circ$C');
                 self.paramDictionary.addKey('Phase','Phase $\phi$','$^\circ$');
+                self.paramDictionary.addKey('File','file',' ');
+                self.paramDictionary.addKey('Sheet','sheet',' ');
                 self.paramDictionary.save(['parameterDictionary.csv']);
             end
         end
