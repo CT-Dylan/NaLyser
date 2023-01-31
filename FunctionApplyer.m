@@ -273,9 +273,9 @@ classdef FunctionApplyer < GraphAnalyser
 
                         end
                         try
-                            plot(self.ax{2},str2num(paramVal{pIdx}), funResult(n), 'd', 'Color', 'k', 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3');
+                            plot(self.ax{2},str2num(paramVal{pIdx}), funResult(n), 'd', 'Color', 'k', 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3','DisplayName',  ax.Children(n).DisplayName);
                         catch
-                            plot(self.ax{2},zeros(size(self.ax{2})), funResult(n), 'd', 'Color', 'k', 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3');
+                            plot(self.ax{2},zeros(size(self.ax{2})), funResult(n), 'd', 'Color', 'k', 'MarkerSize',8,'MarkerFaceColor',ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3','DisplayName',  ax.Children(n).DisplayName);
 
                         end
                         hold(self.ax{2},'on');
@@ -292,19 +292,19 @@ classdef FunctionApplyer < GraphAnalyser
                     elseif(strcmp(self.funOutputType, 'line'))
                         if(strcmp(self.dd{2}.Value, '(X,Y)'))
                             funResult(n,:) = self.fun(ax.Children(n).XData,ax.Children(n).YData);
-                            plot(self.ax{2},ax.Children(n).XData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3');
+                            plot(self.ax{2},ax.Children(n).XData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3','DisplayName', ax.Children(n).DisplayName);
 
                         elseif(strcmp(self.dd{2}.Value, '(Y,X)'))
                             funResult(n,:) = self.fun(ax.Children(n).YData,ax.Children(n).XData);
-                            plot(self.ax{2},ax.Children(n).YData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3');
+                            plot(self.ax{2},ax.Children(n).YData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3','DisplayName',  ax.Children(n).DisplayName);
 
                         elseif(strcmp(self.dd{2}.Value, '(X)'))
                             funResult(n,:) = self.fun(ax.Children(n).XData);
-                            plot(self.ax{2},ax.Children(n).XData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3');
+                            plot(self.ax{2},ax.Children(n).XData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3','DisplayName',  ax.Children(n).DisplayName);
 
                         elseif(strcmp(self.dd{2}.Value, '(Y)'))
                             funResult(n,:) = self.fun(ax.Children(n).YData);
-                            plot(self.ax{2},ax.Children(n).YData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3');
+                            plot(self.ax{2},ax.Children(n).YData, funResult(n,:), '-', 'Color', ax.Children(n).Color,'LineWidth',1.0,'Tag','derived3', ax.Children(n).DisplayName);
 
                         end
 
