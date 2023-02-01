@@ -11,7 +11,7 @@ Overview of the files
 [![NL How to install the software](https://img.youtube.com/vi/kRKg1pp_8aA/maxresdefault.jpg)](https://www.youtube.com/embed/kRKg1pp_8aA) </br>
 
 There are 2 ways to get access to the software.  <\br>
-- 1: Get a MATLAB license (2022b or later) and download the Release "NaLyser-Original Files v1.10.1" on the right side of the Github page. You need to unzip it to get access to the files. Afterwards, move the path to the location of the folder and in the command window, enter "RunMain" to launch the program. </br>
+- 1: Get a MATLAB license (2022b or later) and download the latest Release "NaLyser-Original Files v1.10.4" on the right side of the Github page. You need to unzip it to get access to the files. Afterwards, move the path to the location of the folder and in the command window, enter "RunMain" to launch the program. </br>
 - 2: Make sure your OS is running on Windows. Install the software as a standalone application by getting the installer. You can find it in a Google Drive directory, which link may be found in the file Standalone_App/readme.txt . The installer is called "MyAppInstaller_mcr.exe". It will install the Matlab 2022b license-free compiler and the software (warning: 850 MB is required). If you already have the compiler installed, you may also just download the software Standalone_App/NaLyser.exe . Launching tge program is done by double-clicking on NaLyser.exe . 
 
 -----------------------------
@@ -123,6 +123,10 @@ c. Fuction Applier: a tool that will apply a function or an operation to the dat
 In addition, a linear regression can be performed on the results to deduce some tendancies or some correlations.
 
 Note: If the figure has been saved in .fig format. It is possible to analyse it again with a tool accessible by clicking on the icon on the top left corner of the main application.
+
+------------------------------
+MORE
+- 3 Examples of use: https://www.youtube.com/watch?v=aiFQ1w53_6w
 
 
 
