@@ -1,3 +1,5 @@
+[Status] Discontinued
+I cannot continue working on this since my Matlab license expired.
 # NaLyser
 Matlab data analysis software
 -----------------------------
